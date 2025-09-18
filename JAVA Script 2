@@ -1,0 +1,14 @@
+const sidemenu = document.querySelector('aside');
+const menuBtn = document.querySelector('#menu_bar');
+const closeBtn = document.querySelector('.close');
+const themetoggler = document.querySelector('theme_toggler');
+
+// মেনু ওপেন
+menuBtn.addEventListener('click', () => {
+  sidemenu.style.display = 'block';
+});
+
+// মেনু ক্লোজ
+closeBtn.addEventListener('click', () => {
+  sidemenu.style.display = 'none';
+});
