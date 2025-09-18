@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta charset="UTF-8">
+  <title>UI/UX</title>
+
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=gri" />
+  <link rel="stylesheet" href="Style.css">
+  
+</head>
+<biv>
+<div class="container">
+  <!-- aside section start-->
+   <aside>
+    <div class="top">
+    <div class="logo">
+      <h2>M<span class="danger">AHIN</span></h2>
+    </div>  
+    <div class="close">
+  <span class="material-symbols-outlined">close</span>
+
+    </div>
+    </div>
+    <!--top end-->
+    <div class="sidebar">
+      <a href="#">
+        <span class="material-symbols-outlined">grid_view</span>
+        <h3>Dashbord</h3>
+      </a>
+
+
+      <a href="#" class="active">
+      <span class="material-symbols-outlined">person</span>
+        <h3>Custumers</h3>
+      </a>
+        <a href="#">
+          <span class="material-symbols-outlined">insights</span>
+          <h3>analytics</h3>
+        </a>
+
+          <a href="#">
+            <span class="material-symbols-outlined">mail</span>
+            <h3>messages</h3>
+            <span class="bro">14</span>
+          </a>
+
+          <a href="#">
+            <span class="material-symbols-outlined">receipt</span>
+            <h3>products</h3>
+          </a>
+
+          <a href="#">
+            <span class="material-symbols-outlined">report</span>
+            <h3>reports</h3>
+          </a>
+
+          <a href="#">
+            <span class="material-symbols-outlined">settings</span>
+            <h3>Settings</h3>
+          </a>
+
+          <a href="#">
+            <span class="material-symbols-outlined">add</span>
+            <h3>add product</h3>
+          </a>
+
+          <a href="#">
+            <span class="material-symbols-outlined">logout</span>
+            <h3>logout</h3>
+          </a>
+
+    </div>
+   </aside>
+  <!-- aside section end-->
+
+  <!-- main section start-->
+    <main>
+        <H2>Dashboard</H2>
+        <div class="Date">
+          <input type="Date">
+        </div>
+
+       <div class="insights">
+
+         <!--start selling-->
+          <div class="sales">
+           <span class="material-symbols-outlined">trending_down</span>
+            <div class="middile">
+             <div class="left">
+              <h3>Total Sales</h3>
+             <h1>$25,023</h1>
+          </div>
+          <div class="progress">
+            <svg>
+              <circle r="30" cy="40" cx="40"></circle>
+            </svg>
+            <div class="number">80%</div>
+          </div>
+       </div>
+       <small>last 24 Hours</small>
+     </div>
+   <!--end selling-->
+
+
+  <!--start expenses-->
+  <div class="expenses">
+    <span class="material-symbols-outlined">local_mall</span>
+    <div class="middile">
+      <div class="left">
+        <h3>expenses</h3>
+        <h1>$25,023</h1>
+      </div>
+      <div class="progress">
+        <svg>
+          <circle r="30" cy="40" cx="40"></circle>
+        </svg>
+        <div class="number">80%</div>
+      </div>
+    </div>
+    <small>last 24 Hours</small>
+  </div>
+  <!--end expenses-->
+
+  <!--start Income-->
+  <div class="income">
+    <span class="material-symbols-outlined">stacked_line_chart</span>
+    <div class="middile">
+      <div class="left">
+        <h3>Income</h3>
+        <h1>$25,023</h1>
+      </div>
+      <div class="progress">
+        <svg>
+          <circle r="30" cy="40" cx="40"></circle>
+        </svg>
+        <div class="number">80%</div>
+      </div>
+    </div>
+    <small>last 24 Hours</small>
+  </div>
+  <!--end Income-->
+</div>
+<!--End Inside-->
+<!--start recent odear-->
+<div class="recent_odear">
+  <h1>recent odear</h1>
+  <table>
+
+    <thead>
+      <tr>
+        <th>product name</th>
+        <th>product number</th>
+        <th>payment</th>
+        <th>status</th>
+      </tr>
+    </thead>
+     <tbody>
+
+      <tr>
+        <td>mini USB</td>
+        <td>456</td>
+        <td>DUE</td>
+        <td class="warrning">pending</td>
+        <td class="primary">Details</td>
+      </tr>
+        <tr>
+          <td>mini USB</td>
+          <td>456</td>
+          <td>DUE</td>
+          <td class="warrning">pending</td>
+          <td class="primary">Details</td>
+        </tr>
+          <tr>
+            <td>mini USB</td>
+            <td>456</td>
+            <td>DUE</td>
+            <td class="warrning">pending</td>
+            <td class="primary">Details</td>
+          </tr>
+
+     </tbody>
+
+  </table>
+  
+</div>
+
+<!--end recent odear-->
+      
+      
+    </main>
+    <!-- main section end-->
+
+    <!-- right section start-->
+    <div class="right">
+      <!--start top-->
+      <div class="top">
+
+        <button id="menu_bar">
+           <span class="material-symbols-outlined">menu</span>
+        </button>
+        <div class="theme_toggler">
+          <span class="material-symbols-outlined active">light_mode</span>
+          <span class="material-symbols-outlined">dark_mode</span>
+        </div>
+        <div class="profile">
+          <div class="info">
+            <p><b>mahin</b></p>
+            <p>Admin</p>
+            <small class="test_muted"></small>
+          </div>
+          <div class="profile-photo">
+            <img src="profile 1.png">
+        </div>
+      </div>
+    </div>
+    <!--end top--> 
+      <!-- start recent update-->
+       <div class="recent_updates">
+        <h2>recent update</h2>
+<div class="updates">
+  <div class="update">
+          <div class="profile-photo">
+            <img src="profile 2.png">
+          </div>
+          <div class="message">
+            <p><b>mahin</b>recive his order</p>
+            </div>
+          </div>
+            <div class="update">
+              <div class="profile-photo">
+                <img src="profile 3.png">
+              </div>
+              <div class="message">
+                <p><b>mahin</b>recive his order</p>
+              </div>
+              </div>
+              <div class="update">
+                <div class="profile-photo">
+                  <img src="profile 5.png">
+                </div>
+                <div class="message">
+                  <p><b>mahin</b>recive his order</p>
+                </div>
+               </div>
+              </div>
+      
+            </div>
+      
+                    <!-- end recent update-->
+       <!-- start sale analytics-->
+          <div class="sales_analytics">
+      <h2>sales analytics</h2>
+        <div class="item_online">
+           <div class="icon">
+             <span class="material-symbols-outlined">shopping_cart</span>
+            </div>
+            <div class="right_text">
+               <div class="info">
+                <h3>onlion orders</h3>
+                <small class="text-muted">last seen 2 hours</small>
+              </div>
+                <h5 class="danger"> -17%</h5>
+                <h3>3849</h3>
+            </div>
+         </div>
+        <div class="item_online">
+          <div class="icon">
+            <span class="material-symbols-outlined">shopping_cart</span>
+          </div>
+          <div class="right_text">
+            <div class="info">
+              <h3>onlion orders</h3>
+              <small class="text-muted">last seen 2 hours</small>
+            </div>
+            <h5 class="danger"> -17%</h5>
+            <h3>3849</h3>
+          </div>
+        </div>
+        <div class="item_online">
+          <div class="icon">
+            <span class="material-symbols-outlined">shopping_cart</span>
+          </div>
+          <div class="right_text">
+            <div class="info">
+              <h3>onlion orders</h3>
+              <small class="text-muted">last seen 2 hours</small>
+            </div>
+            <h5 class="danger"> -17%</h5>
+            <h3>3849</h3>
+          </div>
+        </div>
+
+
+</div>
+<!-- end sale analytic-->
+
+<div class="add_products">
+  <div>
+    <span class="material-symbols-outlined">add</span>
+  </div>
+  </div>
+</div>
+<!-- right section end-->
+
+</biv>
+
+  <script src="Script.js"></script>
+  <script src="script.js" defer></script>
+
+</body>
+</html>
