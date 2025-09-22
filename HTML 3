@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Management Dashboard</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=das" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="STYLE.CSS">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"></script>
+</head>
+
+<body>
+  <div class="dashboard"><!-- Dashboard -->
+    <section class="navigation"><!-- Navigation -->
+      <img src="image.2.jpg" alt="InstinctHub Logo" class="logo" width="50px" height="50px">
+
+      <div>
+        <span class="material-symbols-outlined">
+          dashboard
+        </span>
+        
+        <span class="material-symbols-outlined">
+          trending_up
+        </span>
+        <span class="material-symbols-outlined">
+          insert_chart
+        </span>
+        <span class="material-symbols-outlined">
+          settings
+        </span>
+       
+      </div>
+
+      <img src="image.1.jpeg" alt="User Image" class="user" width="50px" height="50px">
+
+    </section><!-- Navigation End -->
+
+    <section class="main"><!-- Main -->
+      <div class="search"><!-- Search -->
+        <form action="">
+          <input type="text" name="search" id="searchProject" placeholder="Search Here">
+          <span class="material-symbols-outlined">
+            search
+          </span>
+        </form>
+
+        <div class="notification">
+          <span class="material-symbols-outlined">
+            notifications
+          </span>
+        <span class="material-symbols-outlined">
+          edit
+        </span>
+        </div>
+      </div><!-- Search End -->
+
+      <div class="title">
+        <h1>My Project</h1>
+
+        <label for ="projects">Sort By</label>
+        <select name="projects" id="projectFilter">
+          <option value="">...</option>
+          <option value="recent">Recent Project</option>
+          <option value="finished">Finished Project</option>
+          <option value="ongoing">Ongoing Project</option>
+          <option value="stalled">Stalled Project</option>
+        </select>
+
+      </div>
+
+      <div class="project_list"><!-- Project List -->
+
+        <div class="project" data-status="finished" title="Finished Project"><!-- Project1 -->
+          <div class="category category_color1"></div>
+          <h2>Graphic Design</h2>
+          <p>Active recently</p>
+
+          <ul class="activity">
+            <li>Coming soon banner</li>
+            <li>Book cover</li>
+          </ul>
+
+          <div class="meta">
+            <div class="contributors">
+              <img src="image.3.jpeg" alt="">
+              <img src="image.4.png" alt="" class="stack">
+              <img src="image.5.jpg" alt="" class="stack">
+            </div>
+            <span class="material-symbols-outlined">
+              more_vert
+            </span>
+          </div>
+        </div><!-- Project1 End -->
+
+        <div class="project" data-status="ongoing" title="Ongoing Project"><!-- Project2 -->
+          <div class="category category_color5"></div>
+          <h2>Magazine</h2>
+          <p>1 hour ago</p>
+
+          <ul class="activity">
+            <li>Editorial page content</li>
+          </ul>
+
+          <div class="meta">
+            <div class="contributors">
+              <img src="image14.jpeg" alt="">
+              <img src="image15.jpeg" alt="" class="stack">
+            </div>
+            <span class="material-symbols-outlined">
+              more_vert
+            </span>
+          </div>
+        </div><!-- Project2 End -->
+
+        <div class="project" data-status="stalled" title="Stalled Project"><!-- Project3 -->
+          <div class="category category_color2"></div>
+          <h2>Layouting</h2>
+          <p>1 day ago</p>
+
+          <ul class="activity">
+            <li>Fix layout on page ads</li>
+          </ul>
+
+          <div class="meta">
+            <div class="contributors">
+              <img src="image16.jpeg" alt="">
+            </div>
+            <span class="material-symbols-outlined">
+              more_vert
+            </span>
+          </div>
+        </div><!-- Project3 End -->
+
+        <div class="project" data-status="recent" title="Recent Project"><!-- Project4 -->
+          <div class="category category_color4"></div>
+          <h2>Branding</h2>
+          <p>3 day ago</p>
+
+          <ul class="activity">
+            <li>Brainstorming shapes</li>
+          </ul>
+
+          <div class="meta">
+            <div class="contributors">
+              <img src="image17.jpeg" alt="">
+            </div>
+            <span class="material-symbols-outlined">
+              more_vert
+            </span>
+          </div>
+        </div><!-- Project4 End -->
+
+        <div class="project" data-status="ongoing" title="Ongoing Project"><!-- Project5 -->
+          <div class="category category_color6"></div>
+          <h2>Guidelines</h2>
+          <p>5 day ago</p>
+
+          <ul class="activity">
+            <li>Make brand guidelines for marked cosmetics</li>
+          </ul>
+
+          <div class="meta">
+            <div class="contributors">
+              <img src="image.2.jpg" alt="">
+              <img src="image.3.jpeg" alt="" class="stack">
+            </div>
+            <span class="material-symbols-outlined">
+              more_vert
+            </span>
+          </div>
+        </div><!-- Project5 End -->
+
+        <div class="project" data-status="stalled" title="Stalled Project"><!-- Project6 -->
+          <div class="category category_color3"></div>
+          <h2>Photoshoot</h2>
+          <p>1 week ago</p>
+
+          <ul class="activity">
+            <li>Get the photo ready for magazine</li>
+          </ul>
+
+          <div class="meta">
+            <div class="contributors">
+              <img src="image17.jpeg" alt="">
+              <img src="image16.jpeg" alt="" class="stack">
+              <img src="image15.jpeg" alt="" class="stack">
+            </div>
+            <span class="material-symbols-outlined">
+              more_vert
+            </span>
+          </div>
+        </div><!-- Project6 End -->
+
+      </div><!-- Project List End -->
+
+    </section><!-- Main End -->
+
+    <section class="secondary"><!-- Secondary -->
+      <div class="chart">
+        <h2>Total Project</h2>
+        <canvas id="myChart" width="400" height="400"></canvas>
+
+        <div class="complete">
+          <h3>3 Completed</h3>
+          <p>from 5 projects</p>
+        </div>
+      </div>
+
+      <div class="recent_project"><!-- Recent Project -->
+        <div class="listing">
+          <div class="title">
+            <div class="category category_color1"></div>
+            <h2>Layouting</h2>
+            <p>by Chidozie Kachukwu</p>
+          </div>
+          <span class="material-symbols-outlined">
+            more_vert
+          </span>
+        </div>
+        <div class="listing">
+          <div class="title">
+            <div class="category category_color2"></div>
+            <h2>Photoshoot</h2>
+            <p>by Musa Ismail</p>
+          </div>
+          <span class="material-symbols-outlined">
+            more_vert
+          </span>
+        </div>
+        <div class="listing">
+          <div class="title">
+            <div class="category category_color3"></div>
+            <h2>Branding</h2>
+            <p>by Ezekiel Arowolo</p>
+          </div>
+          <span class="material-symbols-outlined">
+            more_vert
+          </span>
+        </div>
+        <div class="listing">
+          <div class="title">
+            <div class="category category_color4"></div>
+            <h2>Graphics Design</h2>
+            <p>by Matthew Kelechi</p>
+          </div>
+          <span class="material-symbols-outlined">
+            more_vert
+          </span>
+        </div>
+      </div><!-- Recent Project End -->
+
+    </section><!-- Secondary End -->
+
+  </div><!-- Dashboard End-->
+
+  <script src="SCIPT.JS"> </script>
+  <Script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: [
+          'Red',
+          'Blue',
+          'Yellow',
+
+        ],
+        datasets: [{
+          label: 'My First Datset',
+          data: [300, 50, 100],
+          backgroundColor: [
+            'rgba(255, 99, 132)',
+            'rgba(54, 162, 235)',
+            'rgba(255, 205, 86)',
+          ],
+          hoverOffset: 4
+
+        }]
+      },
+      option: {
+        sales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    })
+  </Script>
+</body>
+
+</html>
