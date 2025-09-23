@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard User</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="layout">
+    <!-- ===== Sidebar ===== -->
+    <aside class="sidebar">
+      <div class="user">
+        <img src="image13.jpeg" alt="User" class="avatar" />
+        <div class="info">
+          <h3 class="uname">JOHN DON</h3>
+          <small class="umail">Johndon@company.com</small>
+        </div>
+      </div>
+
+      <nav>
+        <a class="active"><span class="material-symbols-outlined">home</span>
+          <h3>Home</h3>
+        </a>
+        <a><span class="material-symbols-outlined">folder</span>
+          <h3>File</h3>
+        </a>
+        <a><span class="material-symbols-outlined">chat</span>
+          <h3>Messages</h3>
+        </a>
+        <a><span class="material-symbols-outlined">notifications</span>
+          <h3>Notification</h3>
+        </a>
+        <a><span class="material-symbols-outlined">location_on</span>
+          <h3>Location</h3>
+        </a>
+        <a><span class="material-symbols-outlined">bar_chart</span>
+          <h3>Graph</h3>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- ===== Main ===== -->
+    <main>
+      <header class="topbar">
+        <h1>Dashboard User</h1>
+        <button class="icon-btn"><span class="material-symbols-outlined">menu</span></button>
+      </header>
+
+      <!-- Top cards -->
+      <section class="cards">
+        <div class="card earn">
+          <div class="card-top">
+            <h3>Earning</h3><span class="material-symbols-outlined">attach_money</span>
+          </div>
+          <h2 id="earnVal">$628</h2>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <h3>Share</h3><span class="material-symbols-outlined">share</span>
+          </div>
+          <h2 id="shareVal">2434</h2>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <h3>Likes</h3><span class="material-symbols-outlined">thumb_up</span>
+          </div>
+          <h2 id="likeVal">1259</h2>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <h3>Rating</h3><span class="material-symbols-outlined">star</span>
+          </div>
+          <h2 id="rateVal">8,5</h2>
+        </div>
+      </section>
+
+      <!-- Charts Section -->
+      <section class="charts">
+        <!-- Left column: bar + area stacked -->
+        <div class="left-col">
+          <div class="card big">
+            <div class="card-head">
+              <h3>Result</h3>
+              <div class="legend">
+                <span class="dot dot-yellow"></span>2019
+                <span class="dot dot-blue"></span>2020
+                <button id="checkTop" class="btn">Check Now</button>
+              </div>
+            </div>
+            <div class="chart-wrap"><canvas id="barChart"></canvas></div>
+          </div>
+
+          <div class="card">
+            <div class="legend left">
+              <span class="dot dot-yellow"></span> Lower graph
+              <span class="dot dot-blue"></span> Over view
+            </div>
+            <div class="chart-wrap area"><canvas id="areaChart"></canvas></div>
+          </div>
+        </div>
+
+        <!-- Right column: donut -->
+        <div class="card donut-side">
+          <div class="donut-head">
+            <h3>Total Project</h3><b id="donutText">45%</b>
+          </div>
+          <div class="donut-wrap"><canvas id="donutChart"></canvas></div>
+          <ul class="mini-list">
+            <li><span class="dot dot-pink"></span>Lorem ipsum</li>
+            <li><span class="dot dot-blue"></span>Lorem ipsum</li>
+            <li><span class="dot dot-yellow"></span>Lorem ipsum</li>
+            <li><span class="dot dot-blue"></span>Lorem ipsum</li>
+          </ul>
+          <button class="btn wide">Check Now</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
