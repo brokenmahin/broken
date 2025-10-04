@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Progress Steps</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="wrap">
+    <div class="card">
+      <div class="stage">
+        <div class="steps">
+          
+          <div class="step done">
+            <div class="dot"></div>
+            <div class="label">Start 1</div>
+          </div>
+          <div class="step done">
+            <div class="dot"></div>
+            <div class="label">Step 2</div>
+          </div>
+          <div class="step todo">
+            <div class="dot"></div>
+            <div class="label">Step 3</div>
+          </div>
+          <div class="step todo">
+            <div class="dot"></div>
+            <div class="label">Step 4</div>
+          </div>
+          <div class="step todo">
+            <div class="dot"></div>
+            <div class="label">Step 5</div>
+          </div>
+        </div>
+        <div class="controls">
+          <button class="btn">←</button>
+          <button class="btn">→</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="app.js"></script>
+
+</body>
+
+</html>
