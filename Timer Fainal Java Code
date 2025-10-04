@@ -76,3 +76,15 @@ resetBtn.addEventListener('click', reset); // Reset -> reset()
 
 // initial UI
 render(); // show 25:00 on load
+
+
+//shonkep
+current ভ্যারিয়েবল = কোন step সক্রিয় তা ট্র্যাক করছে।
+
+render() = সব step এর অবস্থা (done/todo) এবং সবুজ লাইন আঁকার কাজ করছে।
+
+nextBtn / prevBtn = সামনে বা পেছনে নেয়ার বাটন।
+
+dot click = সরাসরি নির্দিষ্ট step এ যাওয়ার ফিচার।
+
+resize এ render() কল = responsive লাইন যেনো ঠিকভাবে সরে।
