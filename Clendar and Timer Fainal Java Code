@@ -1,0 +1,59 @@
+// ===== Live Calendar + Time =====
+
+// মাসের নাম বসানোর জন্য HTML element ধরা হলো
+const elMonth = document.getElementById('month-name');  // <p id="month-name">
+const elDay   = document.getElementById('day-name');    // <p id="day-name">
+const elDate  = document.getElementById('day-number');  // <p id="day-number">
+const elYear  = document.getElementById('year');        // <p id="year">
+const elTime  = document.getElementById('time');        // <p id="time"> (extra line for time)
+
+// মাস ও দিনের নামের জন্য array বানানো হলো
+const MONTHS   = ["January","February","March","April","May","June","July","August","September","October","November","December"]; // সব মাসের নাম
+const WEEKDAYS = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]; // সপ্তাহের সব দিনের নাম
+
+// নাম্বার 2 digit করার জন্য function (যেমন 5 -> 05)
+const pad = n => n.toString().padStart(2,'0');
+
+// 12h না 24h clock ব্যবহার হবে সেটার জন্য boolean flag
+const USE_24H = false; // false মানে 12 ঘন্টার clock, true করলে 24h হবে
+
+// মাস, দিন, তারিখ, সাল বসানোর function
+function setBase(d){
+  elMonth.textContent = MONTHS[d.getMonth()];   // মাস বসানো
+  elDay.textContent   = WEEKDAYS[d.getDay()];   // দিনের নাম বসানো
+  elDate.textContent  = d.getDate();            // তারিখ বসানো
+  elYear.textContent  = d.getFullYear();        // সাল বসানো
+}
+
+// সময় (ঘণ্টা:মিনিট:সেকেন্ড) বসানোর function
+function setTime(d){
+  if (!elTime) return;                          // যদি elTime element না থাকে তবে কিছু করবে না
+  if (USE_24H){                                 // যদি 24h format ব্যবহার করা হয়
+    elTime.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`; // সরাসরি 24h format
+  } else {                                      // নাহলে 12h format
+    let h = d.getHours();                       // ঘন্টা বের করা হলো
+    const ampm = h >= 12 ? 'PM' : 'AM';         // দুপুরের পর হলে PM, নাহলে AM
+    h = h % 12 || 12;                           // 12h conversion (0 হলে 12 দেখাবে)
+    elTime.textContent = `${pad(h)}:${pad(d.getMinutes())}:${pad(d.getSeconds())} ${ampm}`; // 12h format সহ AM/PM দেখানো
+  }
+}
+
+// শুরুতে তারিখ track করার জন্য একটা key রাখা হলো
+let lastDateKey = '';
+
+// প্রতিসেকেন্ডে এই function রান হবে
+function tick(){
+  const now = new Date();              // এখনকার সময়
+  const key = now.toDateString();      // তারিখকে string এ convert করলাম (যাতে দিন পরিবর্তন detect হয়)
+  if (key !== lastDateKey){            // যদি নতুন দিন শুরু হয় (midnight crossover)
+    setBase(now);                      // মাস, দিন, তারিখ, সাল আবার update করো
+    lastDateKey = key;                 // নতুন দিনকে save করে রাখো
+  }
+  setTime(now);                        // প্রতি সেকেন্ডে সময় update করো
+}
+
+// প্রথমবার function কল করে UI set করা হলো
+tick();
+
+// প্রতি 1 সেকেন্ডে tick function চালানো হবে
+setInterval(tick, 1000);
