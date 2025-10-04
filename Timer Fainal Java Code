@@ -1,57 +1,78 @@
 // === Elements
-const display = document.getElementById('timer'); // timer display er <p> element ta select korlam
-const startBtn = document.getElementById('start'); // start button select
-const stopBtn = document.getElementById('stop'); // stop button select
-const resetBtn = document.getElementById('reset'); // reset button select
+const display = document.getElementById('timer'); // timer display <p>
+const startBtn = document.getElementById('start'); // Start button
+const stopBtn = document.getElementById('stop'); // Stop button
+const resetBtn = document.getElementById('reset'); // Reset button
 
 // === Config
-const POMODORO_SECONDS = 25 * 60; // ekta full pomodoro session = 25 minutes (1500 seconds)
-let remaining = POMODORO_SECONDS; // countdown start hobe 25:00 theke, remaining time rakha holo
-let timerId = null; // setInterval er reference rakhar jonne (pause/reset korte use hobe)
+const POMODORO_SECONDS = 25 * 60; // 25:00 in seconds
+let remaining = POMODORO_SECONDS; // current remaining seconds
+let timerId = null; // setInterval handle (null = not running)
 
 // === Utils
-const fmt = n => (n < 10 ? '0' + n : '' + n); // ek digit number ke 2 digit banai (05, 09 etc.)
+const fmt = n => (n < 10 ? '0' + n : '' + n); // 2-digit formatter
 function render() {
-  const m = Math.floor(remaining / 60); // total seconds theke minutes ber kora
-  const s = remaining % 60; // baki part (seconds) ber kora
-  display.textContent = `${fmt(m)}:${fmt(s)}`; // timer er text update kora (mm:ss format e)
+  // update UI text
+  const m = Math.floor(remaining / 60); // minutes part
+  const s = remaining % 60; // seconds part
+  display.textContent = `${fmt(m)}:${fmt(s)}`; // mm:ss
 }
 
 // === Controls
 function start() {
-  if (timerId || remaining <= 0) return; // jodi timer already chalche OR 0 te thake tahole abar start hobe na
+  // already running? show alert & exit
+  if (timerId) {
+    alert('⏱️ Timer already running!');
+    return;
+  }
+  // at 0? (finished) — do not start; just alert
+  if (remaining <= 0) {
+    alert('✅ Session finished. Please Reset to start again.');
+    return;
+  }
+
+  // start ticking each second
   timerId = setInterval(() => {
-    // 1 second por por ei function run hobe
-    remaining--; // ek second kombe
-    render(); // display update hobe
+    remaining--; // decrease 1s
+    render(); // update display
+
     if (remaining <= 0) {
-      // jodi timer 0 hoye jai
-      clearInterval(timerId); // interval stop kore dao
-      timerId = null; // reference clear kora
-      remaining = 0; // time 0 e lock kore dilam
-      render(); // abar display update hobe 00:00
-      // optional: alert('Session complete!'); // ekhane ekta alert dekhate paro jodi chai
+      // reached zero
+      clearInterval(timerId); // stop interval
+      timerId = null; // mark as not running
+      remaining = 0; // clamp to 0
+      render(); // show 00:00
+      // optional: alert('🎉 Pomodoro complete!');
     }
-  }, 1000); // protiti tick 1000ms = 1s por por
+  }, 1000);
 }
 
 function stop() {
-  if (!timerId) return; // jodi timer already stop thake, kichu korbe na
-  clearInterval(timerId); // timer ke pause kore dao
-  timerId = null; // reference reset kora (pause state)
+  // not running? show alert & exit
+  if (!timerId) {
+    alert('⏸️ Timer is already stopped.');
+    return;
+  }
+  clearInterval(timerId); // pause
+  timerId = null; // mark as not running
 }
 
 function reset() {
-  clearInterval(timerId); // jodi kono active timer thake, shetake stop kore dao
-  timerId = null; // timer reference clear kore dilam
-  remaining = POMODORO_SECONDS; // abar 25 minute e reset kora holo
-  render(); // display abar update holo 25:00
+  // already at initial state AND not running? show alert
+  if (remaining === POMODORO_SECONDS && !timerId) {
+    alert('🔄 Timer is already at 25:00.');
+    return;
+  }
+  clearInterval(timerId); // stop if running
+  timerId = null; // mark as not running
+  remaining = POMODORO_SECONDS; // back to 25:00
+  render(); // update UI
 }
 
 // === Wire buttons
-startBtn.addEventListener('click', start); // start button click -> start() function
-stopBtn.addEventListener('click', stop); // stop button click -> stop() function
-resetBtn.addEventListener('click', reset); // reset button click -> reset() function
+startBtn.addEventListener('click', start); // Start -> start()
+stopBtn.addEventListener('click', stop); // Stop  -> stop()
+resetBtn.addEventListener('click', reset); // Reset -> reset()
 
 // initial UI
-render(); // page load e display ke 25:00 kore show kora holo
+render(); // show 25:00 on load
