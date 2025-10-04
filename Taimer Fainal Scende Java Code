@@ -1,0 +1,22 @@
+const t = document.getElementById('timer'),  // timer display element select (jekhane time show hobe)
+      s = document.getElementById('start'),  // start button select
+      p = document.getElementById('stop'),   // stop button select
+      r = document.getElementById('reset');  // reset button select
+
+let sec = 0, id = null;                      // sec = total seconds, id = interval er reference (null means off)
+
+const fmt = n => n.toString().padStart(2, '0'),   // number ke 2 digit e format kore (5 → "05")
+upd = () => t.textContent = `${fmt(sec/60|0)}:${fmt(sec%60)}`; // minute & second format kore display te show kore
+
+s.onclick = () => id ??= setInterval(() => (sec++, upd()), 1000); 
+// start button e click korle: jodi timer off thake, tahole setInterval suru hobe  
+// protiti 1000ms = 1s por por sec++ mane time barbe & upd() diye UI update hobe  
+// '??=' mane jodi id null hoy taholei assign hobe, jodi already running hoy tahole abar start hobe na
+
+p.onclick = () => (clearInterval(id), id = null);  
+// stop button e click korle: timer off kore (clearInterval), id ke null set kore (pause hoye jai)
+
+r.onclick = () => (clearInterval(id), id = null, sec = 0, upd()); 
+// reset button e click korle: timer off kore, sec = 0 kore & UI ke abar 00:00 e reset kore
+
+upd(); // page load er sathe sathe timer ke "00:00" show korai
