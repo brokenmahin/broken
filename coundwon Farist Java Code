@@ -1,0 +1,70 @@
+// Prottek minute sesh hole jekono message show korar jonno ekta array
+const messages = [
+  "⏳ First minute done!",
+  "⌛ Second minute over!",
+  "⏱ Third minute passed!",
+  "🔔 Another minute gone!",
+  "🔥 Time’s up for this round!"
+];
+
+// HTML theke element gulo select korchi
+const giveaway = document.querySelector('.giveaway'); // Giveaway title jekhane show hobe
+const deadline = document.querySelector('.deadline'); // Countdown container
+const items = document.querySelectorAll('.deadline-format h4'); // Countdown er digits (days/hours/minutes/seconds er jonne)
+
+// Countdown er niche message dekhate notun ekta <div> create korchi
+let msg = document.createElement('div');   // ekta new <div> banailam
+msg.className = 'count-message';           // class add korlam styling er jonno
+msg.style.display = 'none';                // by default hide kora holo
+deadline.after(msg);                       // deadline er pore ei div insert kore dilam
+
+// Countdown shuru hobe ek minute theke
+let futureTime = Date.now() + 60 * 1000;   // ekhon theke 60 second (1 minute) jog korlam
+let messageIndex = 0;                      // kon message dekhabo tar index
+let countdown;                             // countdown interval er variable
+
+// Number formatting er function (01, 02, 03 erokom banabe)
+function format(n) {
+  return n < 10 ? `0${n}` : `${n}`;        // jodi number 10 er chhoto hoy → 0 add korbe
+}
+
+// Main countdown function
+function getRemainingTime() {
+  const t = futureTime - Date.now();       // baki time calculate
+
+  const oneMinute = 60 * 1000;             // ek minute = 60000 ms
+  const oneSecond = 1000;                  // ek second = 1000 ms
+
+  // minutes and seconds calculate
+  let mins = Math.max(0, Math.floor(t / oneMinute));           // baki minute
+  let secs = Math.max(0, Math.floor((t % oneMinute) / oneSecond)); // baki second
+
+  // Countdown update korar jonno ekta array
+  const values = [mins, secs];
+
+  // Prottek <h4> element er moddhe countdown value boshai
+  items.forEach((item, i) => {
+    item.innerHTML = format(values[i]);    // format kore bosai
+  });
+
+  // Jodi countdown time 0 hoye jay
+  if (t <= 0) {
+    clearInterval(countdown);              // countdown stop kore dilam
+
+    msg.textContent = messages[messageIndex % messages.length]; // array theke message nilam
+    msg.style.display = 'block';           // message show kore dilam
+
+    messageIndex++;                        // next bar notun message dibe
+
+    // 5 second por abar countdown restart
+    setTimeout(() => {
+      msg.style.display = 'none';          // message abar hide
+      futureTime = Date.now() + 60 * 1000; // notun kore 1 minute jog
+      countdown = setInterval(getRemainingTime, 1000); // abar countdown start
+    }, 5000);
+  }
+}
+
+// Countdown shuru
+countdown = setInterval(getRemainingTime, 1000); // prottek second e update hobe
+getRemainingTime();                              // immediately ekbar call kore initial value show
