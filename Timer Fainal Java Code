@@ -1,0 +1,57 @@
+// === Elements
+const display = document.getElementById('timer'); // timer display er <p> element ta select korlam
+const startBtn = document.getElementById('start'); // start button select
+const stopBtn = document.getElementById('stop'); // stop button select
+const resetBtn = document.getElementById('reset'); // reset button select
+
+// === Config
+const POMODORO_SECONDS = 25 * 60; // ekta full pomodoro session = 25 minutes (1500 seconds)
+let remaining = POMODORO_SECONDS; // countdown start hobe 25:00 theke, remaining time rakha holo
+let timerId = null; // setInterval er reference rakhar jonne (pause/reset korte use hobe)
+
+// === Utils
+const fmt = n => (n < 10 ? '0' + n : '' + n); // ek digit number ke 2 digit banai (05, 09 etc.)
+function render() {
+  const m = Math.floor(remaining / 60); // total seconds theke minutes ber kora
+  const s = remaining % 60; // baki part (seconds) ber kora
+  display.textContent = `${fmt(m)}:${fmt(s)}`; // timer er text update kora (mm:ss format e)
+}
+
+// === Controls
+function start() {
+  if (timerId || remaining <= 0) return; // jodi timer already chalche OR 0 te thake tahole abar start hobe na
+  timerId = setInterval(() => {
+    // 1 second por por ei function run hobe
+    remaining--; // ek second kombe
+    render(); // display update hobe
+    if (remaining <= 0) {
+      // jodi timer 0 hoye jai
+      clearInterval(timerId); // interval stop kore dao
+      timerId = null; // reference clear kora
+      remaining = 0; // time 0 e lock kore dilam
+      render(); // abar display update hobe 00:00
+      // optional: alert('Session complete!'); // ekhane ekta alert dekhate paro jodi chai
+    }
+  }, 1000); // protiti tick 1000ms = 1s por por
+}
+
+function stop() {
+  if (!timerId) return; // jodi timer already stop thake, kichu korbe na
+  clearInterval(timerId); // timer ke pause kore dao
+  timerId = null; // reference reset kora (pause state)
+}
+
+function reset() {
+  clearInterval(timerId); // jodi kono active timer thake, shetake stop kore dao
+  timerId = null; // timer reference clear kore dilam
+  remaining = POMODORO_SECONDS; // abar 25 minute e reset kora holo
+  render(); // display abar update holo 25:00
+}
+
+// === Wire buttons
+startBtn.addEventListener('click', start); // start button click -> start() function
+stopBtn.addEventListener('click', stop); // stop button click -> stop() function
+resetBtn.addEventListener('click', reset); // reset button click -> reset() function
+
+// initial UI
+render(); // page load e display ke 25:00 kore show kora holo
