@@ -1,0 +1,65 @@
+// elements
+const stepsWrap = document.querySelector('.steps'); // পুরো progress bar container (.steps) সিলেক্ট করলাম
+const steps = [...document.querySelectorAll('.step')]; // সব step (.step) নোডগুলিকে একটি array তে রাখলাম
+const dots = steps.map(s => s.querySelector('.dot')); // প্রতিটি step এর ভেতরের গোল circle (.dot) সংগ্রহ করলাম
+const [prevBtn, nextBtn] = document.querySelectorAll('.controls .btn'); // আগের ও পরের বাটনগুলো সিলেক্ট করলাম
+
+// ✅ শুরুতে কোনো step done নয় (প্রথমটাও X এর মতো থাকবে)
+let current = -1; // current step index = -1 মানে এখনো কোনো step সক্রিয় হয়নি
+
+// render: class + green line
+function render() {
+  // প্রতিটি step এ "done" বা "todo" ক্লাস বসানো হচ্ছে
+  steps.forEach((el, i) => {
+    const isDone = i <= current;                 // যদি index current এর সমান বা কম হয় তবে done
+    el.classList.toggle('done', isDone);         // done class টগল করা হলো
+    el.classList.toggle('todo', !isDone);        // todo class টগল করা হলো
+  });
+
+  // যদি কোনো step সিলেক্ট করা না থাকে তবে লাইন শূন্য করে দাও
+  if (current < 0) {
+    stepsWrap.style.setProperty('--line-left', '0px'); // লাইন শুরু হবে 0 থেকে
+    stepsWrap.style.setProperty('--line-width', '0px'); // লাইন দৈর্ঘ্য হবে 0
+    return; // ফাংশন শেষ
+  }
+
+  // pixel-perfect line (first dot center → current dot center)
+  const wrap = stepsWrap.getBoundingClientRect(); // পুরো container এর অবস্থান (position) বের করলাম
+  const first = dots[0].getBoundingClientRect();  // প্রথম dot এর অবস্থান বের করলাম
+  const cur = dots[current].getBoundingClientRect(); // বর্তমান dot এর অবস্থান বের করলাম
+
+  const firstCenter = first.left - wrap.left + first.width / 2; // প্রথম dot এর center X পজিশন
+  const curCenter = cur.left - wrap.left + cur.width / 2;       // বর্তমান dot এর center X পজিশন
+
+  stepsWrap.style.setProperty('--line-left', firstCenter + 'px'); // লাইন শুরু হবে প্রথম dot থেকে
+  stepsWrap.style.setProperty(
+    '--line-width',
+    Math.max(0, curCenter - firstCenter) + 'px' // লাইন দৈর্ঘ্য হবে বর্তমান dot পর্যন্ত
+  );
+}
+
+// next/prev
+nextBtn.addEventListener('click', () => { // যখন "next" বাটনে ক্লিক হবে
+  if (current < steps.length - 1) {       // যদি current শেষ step এর আগের কোনো step হয়
+    current++;                            // current index এক ধাপ বাড়াও
+    render();                             // UI রেন্ডার করো
+  }
+});
+prevBtn.addEventListener('click', () => { // যখন "prev" বাটনে ক্লিক হবে
+  if (current >= 0) {                     // যদি current 0 বা তার বেশি হয়
+    current--;                            // current index এক ধাপ কমাও
+    render();                             // UI রেন্ডার করো
+  }
+});
+
+// dot click → direct jump
+steps.forEach((el, i) =>
+  el.addEventListener('click', () => { // প্রতিটি dot এ ক্লিক করলে
+    current = i;                        // current index = ঐ dot এর index হবে
+    render();                           // UI রেন্ডার হবে
+  })
+);
+
+// first paint
+render(); // পেজ লোড হলে প্রথমবার render() কল করলাম যাতে UI শুরু থেকেই সঠিকভাবে দেখা যায়
+window.addEventListener('resize', render); // উইন্ডোর সাইজ বদলালে render() আবার কল হবে, যাতে লাইন ঠিক থাকে
