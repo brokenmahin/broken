@@ -1,0 +1,63 @@
+const messages = [
+  '⏳ First minute done!',
+  '⌛ Second minute over!',
+  '⏱ Third minute passed!',
+  '🔔 Another minute gone!',
+  '🔥 Time’s up for this round!',
+];
+
+const giveaway = document.querySelector('.giveaway');
+const deadline = document.querySelector('.deadline');
+const items = document.querySelectorAll('.deadline-format h4');
+
+// message element create kore countdown er niche bosai
+let msg = document.createElement('div');
+msg.className = 'count-message';
+msg.style.display = 'none';
+deadline.after(msg);
+
+// countdown shuru hobe ek min pore
+let futureTime = Date.now() + 60 * 1000;
+let messageIndex = 0;
+let countdown;
+
+function format(n) {
+  return n < 10 ? `0${n}` : `${n}`;
+}
+
+function getRemainingTime() {
+  const t = futureTime - Date.now();
+
+  const oneMinute = 60 * 1000;
+  const oneSecond = 1000;
+
+  let mins = Math.max(0, Math.floor(t / oneMinute));
+  let secs = Math.max(0, Math.floor((t % oneMinute) / oneSecond));
+
+  const values = [mins, secs];
+  items.forEach((item, i) => {
+    item.innerHTML = format(values[i]);
+  });
+
+  // jodi time 0 hoye jai
+  if (t <= 0) {
+    clearInterval(countdown);
+
+    // 5 sec er jonno message show korbo
+    msg.textContent = messages[messageIndex % messages.length];
+    msg.style.display = 'block';
+
+    messageIndex++;
+
+    // 5 sec pore abar countdown restart
+    setTimeout(() => {
+      msg.style.display = 'none';
+      futureTime = Date.now() + 60 * 1000; // abar +1 min
+      countdown = setInterval(getRemainingTime, 1000);
+    }, 5000);
+  }
+}
+
+// start
+countdown = setInterval(getRemainingTime, 1000);
+getRemainingTime();
