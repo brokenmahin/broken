@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Live Analog Clock</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="card">
+    <div class="stage">
+      <div class="clock">
+        <!-- Ticks -->
+        <span class="ticks minutes"></span>
+        <span class="ticks hours"></span>
+
+        <!-- Logo -->
+        <span class="logo">ROLEX</span>
+
+        
+        <!-- Numbers (1-12) -->
+        <span class="num" style="--i:12">12</span>
+        <span class="num" style="--i:1">1</span>
+        <span class="num" style="--i:2">2</span>
+        <span class="num" style="--i:3">3</span>
+        <span class="num" style="--i:4">4</span>
+        <span class="num" style="--i:5">5</span>
+        <span class="num" style="--i:6">6</span>
+        <span class="num" style="--i:7">7</span>
+        <span class="num" style="--i:8">8</span>
+        <span class="num" style="--i:9">9</span>
+        <span class="num" style="--i:10">10</span>
+        <span class="num" style="--i:11">11</span>
+
+
+        <!-- Hands -->
+        <span class="hand hour"></span>
+        <span class="hand minute"></span>
+        <span class="hand second"></span>
+        <span class="cap"></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
