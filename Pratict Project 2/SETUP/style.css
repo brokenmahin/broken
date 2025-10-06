@@ -1,0 +1,108 @@
+  /* ========= Base layout ========= */
+:root{
+  --bg:#f3f6f9;
+  --text:#2f3f4f;
+  --muted:#6b7a8c;
+
+  --green:#23b26d;
+  --green-d:#1e9b5f;
+
+  --red:#c63d32;
+  --red-d:#ad352b;
+
+  --gray:#8b969f;
+  --gray-d:#7b858e;
+
+  --radius:10px;
+  --shadow:0 6px 16px rgba(28, 44, 64, .08);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* ========= Centered container ========= */
+.container{
+  min-height:10vh;
+  display:grid;
+  place-items:center;
+  padding:32px;
+}
+
+.container > *{ /* stack nicely */
+  margin: 0;
+}
+
+.title{
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 800;
+  letter-spacing:.5px;
+  margin-bottom: 24px;
+  text-align:center;
+}
+
+/* ========= Timer display ========= */
+.timer{
+  font-size: clamp(56px, 9vw, 96px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 2px;
+  color: var(--text);
+  margin: 8px 0 28px;
+  text-align:center;
+}
+
+/* ========= Buttons ========= */
+.button-wrapper{
+  display:flex;
+  gap: 20px;
+  align-items:center;
+  justify-content:center;
+}
+
+.button-wrapper button{
+  appearance:none;
+  border:none;
+  border-radius: var(--radius);
+  padding: 12px 26px;
+  font-weight:700;
+  letter-spacing:.6px;
+  text-transform: uppercase;
+  color:#fff;
+  cursor:pointer;
+  box-shadow: var(--shadow);
+  transition: transform .06s ease, filter .2s ease, background-color .2s ease;
+}
+
+.button-wrapper button:active{
+  transform: translateY(1px);
+}
+
+/* Start (green) */
+#start{ background: var(--green); }
+#start:hover{ background: var(--green-d); }
+
+/* Stop (red) */
+#stop{ background: var(--red); }
+#stop:hover{ background: var(--red-d); }
+
+/* Reset (gray) */
+#reset{ background: var(--gray); }
+#reset:hover{ background: var(--gray-d); }
+
+/* Focus ring for accessibility */
+.button-wrapper button:focus-visible{
+  outline: 3px solid rgba(73,166,233,.45);
+  outline-offset: 2px;
+}
+
+/* Small screens spacing tweak */
+@media (max-width: 420px){
+  .button-wrapper{ gap:12px }
+  .button-wrapper button{ padding:10px 18px }
+}
